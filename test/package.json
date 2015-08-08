@@ -1,0 +1,13 @@
+{
+  "description": "Hello Hugo test",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inzhoop-co/hello-world-mod"
+  },
+  "dependencies": {
+    "nightwatch": "^0.5.36"
+  },
+  "scripts": {
+    "start": "nightwatch"
+  }
+}

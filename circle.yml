@@ -1,0 +1,14 @@
+dependencies:
+  override:
+    - echo "Don't run npm install."
+    - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.6.0-circleci'; chmod 0755 /usr/bin/docker; true
+    - sudo service docker start
+    - sudo pip install -U docker-compose
+
+test:
+  override:
+    - ./test.sh
+  post:
+    - docker logs $(docker-compose ps -q helloworldmaster) > $CIRCLE_ARTIFACTS/master.log
+    - docker logs $(docker-compose ps -q helloworldwrite) > $CIRCLE_ARTIFACTS/write.log
+    - docker logs $(docker-compose ps -q helloworldread) > $CIRCLE_ARTIFACTS/read.log
