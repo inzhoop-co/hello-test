@@ -1,11 +1,13 @@
+Some tech notes:
+
 List containers
 - docker-compose ps
 
-Stop end remove containers
+Stop & Remove containers
 - docker-compose stop
 - docker-compose rm
 
-Build and rebuild
+Build & Rebuild
 - docker-compose build
 
 
