@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/inzhoop-co/hello-world-mod.git"
+    "url": "git://github.com/inzhoop-co/hello-test.git"
   },
   "bugs": {
-    "url": "https://github.com/inzhoop-co/hello-world-mod/issues"
+    "url": "https://github.com/inzhoop-co/hello-test/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/inzhoop-co/hello-world-mod/blob/master/LICENSE.txt"
+      "url": "https://github.com/inzhoop-co/hello-test/blob/master/LICENSE.txt"
     }
   ],
   "module_dependencies": [

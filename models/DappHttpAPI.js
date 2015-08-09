@@ -38,11 +38,11 @@ function DappHttpAPI() {
 			}
 			var bodyObj = JSON.parse(httpReq.Body);
 			Printf("BODYOBJ: %v\n",bodyObj);
-			if(bodyObj === undefined || bodyObj.name === undefined || bodyObj.data === undefined){
+			if(bodyObj === undefined || bodyObj.name === undefined || bodyObj.data === undefined || bodyObj.passkey === undefined){
 				return network.getHttpResponse(400,{},"Malformed request: No filename provided.");
 			}
 			// Now send the filename and data to the add method.
-			result = handlers.add(bodyObj.name,bodyObj.data);
+			result = handlers.add(bodyObj.name,bodyObj.data,bodyObj.passkey);
 			
 		} else if (method === "GET") {
 			if(urlObj.path.length !== 2){
@@ -58,7 +58,8 @@ function DappHttpAPI() {
 	}
 
 	// Add a file with name 'filename' and the data 'data'.
-	handlers.add = function(filename,data){
+	handlers.add = function(filename,data,pass){
+		var fPass = sutil.stringToHex(pass);
 		var fName = sutil.stringToHex(filename);
 		var fHash = writeFile(data);
 		if(fHash === ""){
@@ -67,6 +68,7 @@ function DappHttpAPI() {
 		var txData = [];
 		txData.push(fName);
 		txData.push(fHash);
+                txData.push(fPass);
 		msg(txData);
 		commit();
 		return network.getHttpResponse(200,{},"");

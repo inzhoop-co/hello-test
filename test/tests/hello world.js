@@ -9,6 +9,7 @@ module.exports = {
         // This is a hackash workaround to the fact that there's no easy way to
         // wait for the alert.
         addFile = function (){
+	 var key = document.getElementById('passkey').value;
           var fName = document.getElementById('filenameAdd').value;
           var body = document.getElementById('input').value;
 
@@ -19,11 +20,12 @@ module.exports = {
 
           // We send a POST request to the base url that ends with '/apis/hellohugo/files'
           // We don't worry about headers and stuff now (although we should).
-          var txt = sender.send("POST", baseUrl + "/files", JSON.stringify({name:fName,data:body}));
+          var txt = sender.send("POST", baseUrl + "/files", JSON.stringify({name:fName,data:body,passkey:key}));
           document.body.innerHTML += '<div id="alertPresent">File sent! You can now get it by its name.</div>';
         };
       })
 
+      .setValue('//input[@id="passkey"]',"block")
       .setValue('//input[@id="filenameAdd"]', "greeting")
       .setValue('//textarea[@id="input"]', "Hello hugo!")
       .click('(//button)[1]')

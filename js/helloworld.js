@@ -6,7 +6,7 @@
  * your public address as a , but storing large files using IPFS 
  * (Interplanetary Filesystem) instead of a string.
  *																				  
- * Licence: https://github.com/eris-ltd/hello-world-dapp/blob/master/LICENSE.txt             
+ * Licence: https://github.com/inzhoop-co/hello-test/blob/master/LICENSE.txt             
  *																				  
  */
 
@@ -61,15 +61,21 @@ function getFile(){
 };
 
 function addFile(){
+	var key = document.getElementById('passkey').value;
 	var fName = document.getElementById('filenameAdd').value;
 	var body = document.getElementById('input').value;
 	
+	if(key === ""){
+		window.alert('You must provide a passkey!');	
+		return;
+	}
+
 	if(body === "" || fName === ""){
 		window.alert("You must provide a file name and some data.");
 		return;
 	}
 
-	var jsonObj = { name : fName , data : encodeURI(body) };
+	var jsonObj = { name : fName , data : encodeURI(body) , passkey : key };
 	console.log(jsonObj);
 
 	sender.sendAsync("POST", baseUrl + "/files", JSON.stringify(jsonObj), function(request) {

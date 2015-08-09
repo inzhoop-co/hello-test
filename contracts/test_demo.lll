@@ -7,27 +7,28 @@
 {
 (def "filename" $0)		; $N is shorthand for (calldataload N)
 (def "filehash" $32)
-(def "passkey" $64)
+(def "passkey" $64)		; add var to test modify
 
 [[0x10]] 0xDEADBEEF
 
 ; Here starts the init section. There is no code in init - we just return the body.
 
 	(returnlll {		
-		(if @@passkey
+		(when (= @@passkey "block")
 		{
 			; Check if anything is stored at storage address "filename" (e.g. @@filename is not 0)
 			(if @@filename 
-			; If something is stored, exit by returning 0
-			{
-				(return 0)
-			}
-			; Otherwise, we store the hash at address "filename"
-			{
-				[[filename]] filehash
-				(return 1)
-			}
+				; If something is stored, exit by returning 0
+				{
+					(return 0)
+				}
+				; Otherwise, we store the hash at address "filename"
+				{
+					[[filename]] filehash
+					(return 1)
+				}
 			)
-		})
-	})
+			(return 0)
+		})		 
+	} )
 }

@@ -4,14 +4,14 @@
  */
 function HelloWorldDapp(){
 
-	Println("Creating helloworld.");
+	Println("Creating hello hugo.");
 
 	// var dappCore = new DappCore();
 	// var api = new DappHttpAPI(dappCore);
 	var api = new DappHttpAPI();
 
 	this.run = function(){
-		Println("Starting helloworld.");
+		Println("Starting hello hugo.");
 		// We overwrite the new incoming http callback with this function.
 		network.incomingHttpCallback = function(request) {
 			return api.handle(request);
