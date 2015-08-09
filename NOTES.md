@@ -1,4 +1,11 @@
-[![Circle CI](https://circleci.com/gh/eris-ltd/hello-world-dapp.svg?style=svg)](https://circleci.com/gh/eris-ltd/hello-world-dapp)
+List containers
+- docker-compose ps
 
-This is a sample test
-See https://decerver.io/tutorials/.
+Stop end remove containers
+- docker-compose stop
+- docker-compose rm
+
+Build and rebuild
+- docker-compose build
+
+
